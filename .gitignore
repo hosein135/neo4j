@@ -1,0 +1,23 @@
+# Local Neo4j / Nix run artifacts
+.neo4j-data/
+.neo4j-nix-ready
+.neo4j-bootstrap/
+
+# Django / frontend build
+frontend/node_modules/
+frontend/.next/
+frontend/out/
+*.sqlite3
+
+# Python
+**/__pycache__/
+*.py[cod]
+.venv/
+venv/
+
+# Editors / OS
+.direnv/
+.DS_Store
+Thumbs.db
+*.log
+*.swp
