@@ -2,7 +2,7 @@
 # =============================================================================
 # run.sh — Neo4j Community + movie graph + Django API + Next.js UI
 #
-# Same shape as ../librelane/run.sh: NixOS 25.05 packages from devops/flake.nix,
+# Same shape as ../librelane/run.sh: NixOS 25.05 packages from devops/.tack,
 # then the app. This app does not use Postgres. Graph data lives in Neo4j.
 #
 # Usage:
@@ -64,7 +64,7 @@ Neo4j movie explorer — setup or start (Linux / macOS / WSL).
   ./run.sh --build      production Next.js build + next start
 
 Nix 2.28.5 is installed if the nix command is missing. An existing Nix is reused.
-Packages come from devops/flake.nix (nixpkgs 25.05): neo4j and python313Packages.neo4j.
+Packages come from devops/.tack (nixpkgs 25.05): neo4j and python313Packages.neo4j.
 There is no Postgres service.
 EOF
             exit 0 ;;
@@ -122,7 +122,11 @@ file_hash() {
 
 init_cache_paths() {
     local key
-    key="$(file_hash "${FLAKE_DIR}/flake.nix")-$(file_hash "${FLAKE_DIR}/web-shell.nix")"
+    if [ ! -f "${FLAKE_DIR}/.tack/pins.lock.json" ]; then
+        error "tack pin lock missing: ${FLAKE_DIR}/.tack/pins.lock.json"
+        exit 1
+    fi
+    key="$(file_hash "${FLAKE_DIR}/flake.nix")-$(file_hash "${FLAKE_DIR}/web-shell.nix")-$(file_hash "${FLAKE_DIR}/.tack/pins.lock.json")"
     SYSTEM_CACHE="${SYSTEM_CACHE_ROOT}/${key}"
     SYSTEM_PROFILE="${SYSTEM_CACHE}/profile"
     SYSTEM_DEVENV="${SYSTEM_CACHE}/devenv.sh"

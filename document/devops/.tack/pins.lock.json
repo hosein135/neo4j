@@ -1,0 +1,13 @@
+{
+  "$declared": {
+    "nixpkgs": "github:NixOS/nixpkgs/nixos-25.05"
+  },
+  "nixpkgs": {
+    "type": "github",
+    "owner": "NixOS",
+    "repo": "nixpkgs",
+    "rev": "ac62194c3917d5f474c1a844b6fd6da2db95077d",
+    "narHash": "sha256-16KkgfdYqjaeRGBaYsNrhPRRENs0qzkQVUooNHtoy2w=",
+    "lastModified": 1767313136
+  }
+}

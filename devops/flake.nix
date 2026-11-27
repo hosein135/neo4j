@@ -3,11 +3,15 @@
 {
   description = "Neo4j Community movie graph explorer";
 
-  inputs.nixpkgs.url = "github:NixOS/nixpkgs/nixos-25.05";
-
+  # Package versions are pinned in ./.tack (tack). This flake has no inputs of
+  # its own, so `nix flake update` cannot move nixpkgs.
   outputs =
-    { self, nixpkgs }:
+    { self, ... }@args:
     let
+      inputs = (import ./.tack) {
+        overrides = args.tackOverrides or { };
+      };
+      inherit (inputs) nixpkgs;
       systems = [
         "x86_64-linux"
         "aarch64-linux"

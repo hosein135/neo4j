@@ -1,0 +1,9 @@
+# tack pins. edit by hand or with tack add / rm / alias
+# nix reads pins.lock.json; this file drives tack update
+#
+# nixpkgs is the NixOS 25.05 branch, frozen at the revision this dev shell
+# already used. `tack update nixpkgs` is required to move it.
+
+[inputs.nixpkgs]
+url = "github:NixOS/nixpkgs/nixos-25.05"
+frozen = "ac62194c3917d5f474c1a844b6fd6da2db95077d"
